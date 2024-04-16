@@ -47,7 +47,7 @@ CREATE TABLE tbl_itensVenda(
 )
 
 INSERT INTO tbl_cliente(nomeCliente, cpfCliente, emailCliente, sexoCliente,dataNascimentoCliente)VALUES
-('Amanda JosÈ Santana', '12345678900', 'amandojsantana@outlook.com', 'm', '1961/02/21'),
+('Amanda Jos√© Santana', '12345678900', 'amandojsantana@outlook.com', 'm', '1961/02/21'),
 ('Sheila Carvalho Real', '45678909823', 'scarvalho@ig.com.br', 'f', '1978/09/13'),
 ('Carlos Henrique Souza', '76598278299', 'chenrique@ig.com.br', 'm', '1981/09/08'),
 ('Maria Aparecida Souza', '87365309899', 'mapdasouza@outlook.com', 'f', '1962/07/07'),
@@ -60,17 +60,17 @@ INSERT INTO tbl_fabricante(nomeFabricante)VALUES
 ('Bunge')
 
 INSERT INTO tbl_fornecedor(nomeFornecedor, contatoFornecedor)VALUES
-('Atacad„o', 'Carlos Santos'),
+('Atacad√£o', 'Carlos Santos'),
 ('Assai', 'Maria Stella'),
-('Rold„o', 'Paulo CÈsar')
+('Rold√£o', 'Paulo C√©sar')
 
 INSERT INTO tbl_produto(descricaoProduto, valorProduto, quantidadeProduto, codFabricante, codFornecedor)VALUES
 ('Amaciante Downy', '5,56', '1500', '2', '1'),
 ('Amaciante Comfort', '5,45', '2300', '1', '1'),
-('Sab„o em pÛ OMO', '5,99', '1280', '1', '2'),
+('Sab√£o em p√≥ OMO', '5,99', '1280', '1', '2'),
 ('Margarina Qually', '4,76', '2500', '3', '1'),
 ('Salsicha Hot Dog Sadia', '6,78', '2900', '3', '2'),
-('Mortadela Perdig„o', '2,50', '1200', '3', '3'),
+('Mortadela Perdig√£o', '2,50', '1200', '3', '3'),
 ('Hamburguer Sadia', '9,98', '1600', '3', '1'),
 ('Fralda Pampers', '36,00', '340', '2', '3'),
 ('Xampu Seda', '5,89', '800', '1', '1'),
@@ -112,11 +112,11 @@ SELECT * FROM tbl_itensVenda
 SELECT * FROM tbl_produto
 SELECT * FROM tbl_venda
 
---a) Listar as descriÁıes dos produtos ao lado do nome dos fabricantes
+--a) Listar as descri√ß√µes dos produtos ao lado do nome dos fabricantes
 SELECT descricaoProduto, nomeFabricante FROM tbl_produto
 	INNER JOIN tbl_fabricante ON tbl_produto.codFabricante = tbl_fabricante.codFabricante
 
---b) Listar as descriÁıes dos produtos ao lado do nome dos fornecedores;
+--b) Listar as descri√ß√µes dos produtos ao lado do nome dos fornecedores;
 SELECT descricaoProduto, nomeFornecedor FROM tbl_produto
 	INNER JOIN tbl_fornecedor ON tbl_produto.codFornecedor = tbl_fornecedor.codFornecedor
 
@@ -130,23 +130,23 @@ SELECT nomeCliente, SUM(valorTotalVenda) 'totalGasto' FROM tbl_cliente
 	INNER JOIN tbl_venda ON tbl_cliente.codCliente = tbl_venda.codCliente
 		GROUP BY nomeCliente
 
---e) Listar a mÈdia dos preÁos dos produtos agrupados pelo nome do fornecedor
-SELECT nomeFornecedor, AVG(valorProduto) 'mÈdia' FROM tbl_fornecedor
+--e) Listar a m√©dia dos pre√ßos dos produtos agrupados pelo nome do fornecedor
+SELECT nomeFornecedor, AVG(valorProduto) 'm√©dia' FROM tbl_fornecedor
 	INNER JOIN tbl_produto ON tbl_fornecedor.codFornecedor = tbl_produto.codFornecedor
 		GROUP BY nomeFornecedor
 
---f) Listar todas a soma das vendas agrupadas pelo nome do cliente em ordem alfabÈtica
+--f) Listar todas a soma das vendas agrupadas pelo nome do cliente em ordem alfab√©tica
 SELECT nomeCliente, SUM(valorTotalVenda) 'totalGasto' FROM tbl_cliente
 	INNER JOIN tbl_venda ON tbl_cliente.codCliente = tbl_venda.codCliente
 		GROUP BY nomeCliente
 			ORDER BY nomeCliente ASC
 
---g) Listar a soma dos preÁos dos produtos agrupados pelo nome do fabricante
+--g) Listar a soma dos pre√ßos dos produtos agrupados pelo nome do fabricante
 SELECT nomeFabricante, SUM(valorProduto) FROM tbl_fabricante
 	INNER JOIN tbl_produto ON tbl_fabricante.codFabricante = tbl_produto.codFabricante
 		GROUP BY nomeFabricante
 
---h) Listar a mÈdia dos preÁos dos produtos agrupados pelo nome do fornecedor
+--h) Listar a m√©dia dos pre√ßos dos produtos agrupados pelo nome do fornecedor
 SELECT nomeFornecedor, AVG(valorProduto) 'totalPrecoProduto' FROM tbl_fornecedor
 	INNER JOIN tbl_produto ON tbl_fornecedor.codFornecedor = tbl_produto.codFornecedor
 		GROUP BY nomeFornecedor
