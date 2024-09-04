@@ -18,7 +18,7 @@ CREATE TABLE tbl_Cliente(
 	cidadeCliente VARCHAR(70) NOT NULL,
 	estadoCliente VARCHAR(2) NOT NULL,
 	cpfCliente CHAR(11) NOT NULL,
-	sexoCliente CHAR(2)
+	sexoCliente CHAR(1)
 )
 
 CREATE TABLE tbl_Produto(
