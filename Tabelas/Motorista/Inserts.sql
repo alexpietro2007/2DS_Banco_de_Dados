@@ -55,16 +55,18 @@ EXEC inserir_Veiculo 'Volkswagen Gol', '1233530', '12345678002', '2018', 4;
 EXEC inserir_Veiculo 'Hyundai HB20', '1233531', '12345678003', '2020', 5;
 EXEC inserir_Veiculo 'Renault Kwid', '1233532', '12345678004', '2022', 6;
 
-
-CREATE PROCEDURE inserirMulta
-	@data SMALLDATETIME,
-	@hora SMALLDATETIME,
-	@pontosMulta INT,
-	@idVeiculo INT
+CREATE PROCEDURE inserirMultaAtual
+    @pontosMulta INT,
+    @idVeiculo INT
 AS
 BEGIN
-
-
-
-
+    INSERT INTO tbl_Multas(dataMulta, horaMulta, pontosMulta, idVeiculo)
+    VALUES (GETDATE(), GETDATE(), @pontosMulta, @idVeiculo)
 END
+
+EXEC inserirMultaAtual 5, 1; -- Multa para o veículo 1
+EXEC inserirMultaAtual 8, 2; -- Multa para o veículo 2
+EXEC inserirMultaAtual 3, 3; -- Multa para o veículo 3
+EXEC inserirMultaAtual 10, 4; -- Multa para o veículo 4
+EXEC inserirMultaAtual 4, 5; -- Multa para o veículo 5
+EXEC inserirMultaAtual 2, 6; -- Multa para o veículo 6
